@@ -6,7 +6,7 @@ from datetime import datetime
 
 class Regsitration(BaseModel):
     uid: Union[str, None] = None
-    nominationType: Literal["Teacher"]
+    nominationType: Literal["Teacher","Student"]
     organisationType: Literal["Matriculation", "Government", "CBSE", "GovernmentAided", "International"]
     fullName: str
     gender: Literal["Male", "Female"]
