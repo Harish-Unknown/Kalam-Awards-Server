@@ -40,6 +40,3 @@ def register(data: Regsitration):
     x = registrations.insert_one(data.dict())
     return {"success": x.acknowledged, "id": uuid}
 
-@app.get("/get-all")
-def getAll():
-    return list(registrations.find({},{"_id": 0}))
