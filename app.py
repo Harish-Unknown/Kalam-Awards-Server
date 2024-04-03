@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-
 from models.Registration import Regsitration
-
 from pymongo.mongo_client import MongoClient
 
 uri = "mongodb+srv://kalamawards2024:BofKJBCyqbuyqyXj@kalamawards.7ba0hpm.mongodb.net/?retryWrites=true&w=majority&appName=KalamAwards"
@@ -14,7 +12,6 @@ registrations = db.registrations
 
 app = FastAPI()
 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -23,11 +20,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 def root():
     return {"Message": "Hello World!"}
-
 
 @app.post("/register")
 def register(data: Regsitration):
@@ -38,6 +33,5 @@ def register(data: Regsitration):
         org = "GOAI"
     uuid = f"SAIKLA24-{org}-{sub}-{str(count).zfill(4)}"
     data.uid = uuid
-    x = registrations.insert_one(dict(data))
+    x = registrations.insert_one(data.dict())
     return {"success": x.acknowledged, "id": uuid}
-
