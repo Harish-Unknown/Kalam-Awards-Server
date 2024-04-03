@@ -3,8 +3,12 @@ from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from models.Registration import Regsitration
 from pymongo.mongo_client import MongoClient
+import os
+from dotenv import load_dotenv
 
-uri = "mongodb+srv://kalamawards2024:BofKJBCyqbuyqyXj@kalamawards.7ba0hpm.mongodb.net/?retryWrites=true&w=majority&appName=KalamAwards"
+load_dotenv()
+
+uri = os.getenv('DBURI')
 
 client = MongoClient(uri)
 db = client.kalamAwards2k24
@@ -35,3 +39,7 @@ def register(data: Regsitration):
     data.uid = uuid
     x = registrations.insert_one(data.dict())
     return {"success": x.acknowledged, "id": uuid}
+
+@app.get("/get-all")
+def getAll():
+    return list(registrations.find({},{"_id": 0}))
