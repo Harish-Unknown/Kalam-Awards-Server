@@ -12,7 +12,7 @@ class Regsitration(BaseModel):
     gender: Literal["Male", "Female"]
     aadharNumber: str
     schoolName: str
-    dob: datetime
+    dob: str
     schoolRegistrationNumber: str
     location: str
     schoolContactNumber: str
