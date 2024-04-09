@@ -31,11 +31,11 @@ def root():
 @app.post("/register")
 def register(data: Regsitration):
     count = registrations.count_documents({})
-    sub = data.subject[0:4].upper()
+    typ = data.nominationType[0:3].upper()
     org = data.organisationType[0:4].upper()
     if data.organisationType == "GovernmentAided":
         org = "GOAI"
-    uuid = f"SAIKLA24-{org}-{sub}-{str(count).zfill(4)}"
+    uuid = f"SAIKLA24-{org}-{typ}-{str(count).zfill(4)}"
     data.uid = uuid
     x = registrations.insert_one(data.dict())
     return {"success": x.acknowledged, "id": uuid}

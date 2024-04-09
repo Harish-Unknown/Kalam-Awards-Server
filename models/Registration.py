@@ -6,7 +6,7 @@ from datetime import datetime
 
 class Regsitration(BaseModel):
     uid: Union[str, None] = None
-    nominationType: Literal["Teacher","Student"]
+    nominationType: Literal["Teacher","School","Principal"]
     organisationType: Literal["Matriculation", "Government", "CBSE", "GovernmentAided", "International"]
     fullName: str
     gender: Literal["Male", "Female"]
@@ -16,13 +16,8 @@ class Regsitration(BaseModel):
     schoolRegistrationNumber: str
     location: str
     schoolContactNumber: str
-    address: str
     contactPersonNumber: str
-    district: str
-    subject: Literal["Tamil", "English", "Maths", "Science", "Social", "Computer Science"]
-    schoolEmailId: str
     emailId: str
-    mobileNumber: str
     landline: str
 
     class Config:
@@ -30,7 +25,7 @@ class Regsitration(BaseModel):
             "example": {
                 "uid": "dfadf",
                 "nominationType": "Teacher",
-    "organisationType":"Private", 
+    "organisationType":"Matriculation", 
     "fullName": "Kalam",
     "gender": "Male",
     "aadharNumber": "dafsdf",
@@ -39,13 +34,8 @@ class Regsitration(BaseModel):
     "schoolRegistrationNumber": "str",
     "location": "str",
     "schoolContactNumber": "str",
-    "address": "str",
     "contactPersonNumber": "str",
-    "district": "str",
-    "subject": "Tamil",
-    "schoolEmailId": "str",
     "emailId": "str",
-    "mobileNumber": "str",
     "landline": "str",
             }
         }
